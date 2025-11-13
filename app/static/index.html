@@ -94,14 +94,25 @@
     }
 
     document.getElementById('fetch-recent').addEventListener('click', async ()=>{
-      try{
-        const res = await fetch('/api/telemetry/recent?limit=10');
-        const j = await res.json();
-        recentPre.textContent = JSON.stringify(j.rows, null, 2);
-      }catch(e){
-        recentPre.textContent = 'fetch failed: '+e;
-      }
-    });
+  const btn = document.getElementById('fetch-recent');
+  const recentPre = document.getElementById('recent');
+  const orig = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Loading…';
+  try {
+    const res = await fetch('/api/telemetry/recent?limit=10', { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const j = await res.json();
+    recentPre.textContent = JSON.stringify(j.rows || [], null, 2);
+  } catch (err) {
+    recentPre.textContent = `fetch failed: ${err}`;
+    console.error('fetch recent error', err);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = orig;
+  }
+});
+
   </script>
 </body>
 </html>
