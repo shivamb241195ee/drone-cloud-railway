@@ -1,5 +1,6 @@
 # app/main.py
 import os
+import uvicorn
 import sqlite3
 import time
 import json
