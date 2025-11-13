@@ -19,7 +19,7 @@ AUTH_TOKEN = os.getenv("AUTH_TOKEN", "change-this-secret")  # change in producti
 CLOUDINARY_UPLOAD_URL = os.getenv("CLOUDINARY_UPLOAD_URL")  # e.g. https://api.cloudinary.com/v1_1/<cloud>/image/upload
 CLOUDINARY_UPLOAD_PRESET = os.getenv("CLOUDINARY_UPLOAD_PRESET")  # if using unsigned preset
 DB_PATH = os.getenv("SQLITE_PATH", "/data/telemetry.db")
-PHOTOS_DIR = os.getenv("PHOTOS_DIR", "/srv/photos")
+PHOTOS_DIR = os.getenv("PHOTOS_DIR", "/data/photos")
 PUBLIC_URL = os.getenv("PUBLIC_URL", "")  # e.g. https://your-app.up.railway.app
 
 # Ensure directories exist
